@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -34,6 +35,16 @@ namespace LinqInner
             return comparison(left, right);
         }
 
-        public IEnumerable<>
+        public IEnumerator<T> GetEnumerator()
+        {
+            var sorted = source.ToList();
+            sorted.Sort(comparison);
+            return sorted.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
