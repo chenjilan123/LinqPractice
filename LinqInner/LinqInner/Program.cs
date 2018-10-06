@@ -13,5 +13,15 @@ namespace LinqInner
             Console.WriteLine("Hello World!");
             Console.ReadKey();
         }
+        static IEnumerable<string> GetSequenceFromConsole()
+        {
+            var input = string.Empty;
+            input = Console.ReadLine();
+            while (input != "end!")
+            {
+                yield return input;
+                input = Console.ReadLine();
+            }
+        }
     }
 }
