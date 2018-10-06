@@ -8,13 +8,19 @@ namespace LinqInner
 {
     public static class LinqExtension
     {
-        public static IEnumerable<T> OrderBy<T, TKey>(this IEnumerable<T> source, Func<T, TKey> comparer)
+        public static IOrderingImpl<T> OrderBy<T, TKey>(this IEnumerable<T> source, Func<T, TKey> comparer)
             where TKey : IComparable<TKey>
         {
             //return new ICustomOrderedEnumerable<T, TKey>(source, comparer);
             return new CustomOrderedEnumerable<T, TKey>(source, comparer);
         }
-        public static IEnumerable<T> ThenBy<T, TKey>(this IOrderingImpl<T> source, Func<T, TKey> comparer)
+        public static IOrderingImpl<T> OrderByDescending<T, TKey>(this IEnumerable<T> source, Func<T, TKey> comparer)
+            where TKey : IComparable<TKey>
+        {
+            Comparison<T> descendingComparer = (left, right) => comparer(right).CompareTo(comparer(left));
+            return new CustomOrderedEnumerable<T, TKey>(source, descendingComparer);
+        }
+        public static IOrderingImpl<T> ThenBy<T, TKey>(this IOrderingImpl<T> source, Func<T, TKey> comparer)
             where TKey : IComparable<TKey>
         {
             return new CustomOrderedEnumerable<T, TKey>(source, comparer);

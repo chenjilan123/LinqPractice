@@ -22,6 +22,24 @@ namespace LinqInner
             this.source = source;
             this.comparison = (a, b) => comparer(a).CompareTo(comparer(b));
         }
+        public CustomOrderedEnumerable(IEnumerable<T> source, Comparison<T> comparison)
+        {
+            this.source = source;
+            this.comparison = comparison;
+        }
+        public CustomOrderedEnumerable(IOrderingImpl<T> source, Func<T, TKey> comparer)
+        {
+            this.source = source;
+            //this.comparison = (a, b) => comparer(a).CompareTo(comparer(b));
+            this.comparison = (a, b) =>
+            {
+                var originalComparison = source.CompareTo(a, b);
+                if (originalComparison != 0)
+                    return originalComparison;
+                else
+                    return comparer(a).CompareTo(comparer(b));
+            };
+        }
         public IEnumerable<T> OriginalSource
         {
             get

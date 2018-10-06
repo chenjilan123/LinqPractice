@@ -12,7 +12,9 @@ namespace LinqInner
         static void Main(string[] args)
         {
             var sequence = GetSequenceFromConsole();
-            var ordered = sequence.OrderBy(s => s.Length);
+            var ordered = sequence.OrderByDescending(s => s.Length);
+                                  //.OrderBy(s => s.Length)
+                                  //.ThenBy(s => s);
 
             foreach (var item in ordered)
             {
