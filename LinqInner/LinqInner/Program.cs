@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,13 +10,7 @@ namespace LinqInner
     {
         static void Main(string[] args)
         {
-            var sequence = GetSequenceFromConsole();
-            var ordered = sequence.OrderBy(s => s.Length);
-
-            foreach (var item in ordered)
-            {
-                Console.WriteLine(item);
-            }
+            Console.WriteLine("Hello World!");
             Console.ReadKey();
         }
         static IEnumerable<string> GetSequenceFromConsole()
@@ -31,14 +24,4 @@ namespace LinqInner
             }
         }
     }
-
-    static class LinqExtension
-    {
-        public static IEnumerable<T> OrderBy<T, TKey>(this IEnumerable<T> source, Func<T, TKey> comparer)
-            where TKey : IComparable<TKey>
-        {
-            return new ICustomOrderedEnumerable<T, TKey>(source, comparer);
-        }
-    }
-
 }
