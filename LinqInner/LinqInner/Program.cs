@@ -10,20 +10,16 @@ namespace LinqInner
     {
         static void Main(string[] args)
         {
-            var sequence = GetSequenceFromConsole();
-            var aggregate = sequence.Select(i => i).Aggregate<string, string>("Hello  ", (total, current) => total + ", " + current);
-            Console.WriteLine(aggregate);
-
+            Console.WriteLine("Hello World!");
             Console.ReadKey();
         }
         static IEnumerable<string> GetSequenceFromConsole()
         {
             var input = string.Empty;
-            input = Console.ReadLine();
             while (input != "end!")
             {
-                yield return input;
                 input = Console.ReadLine();
+                yield return input;
             }
         }
 
@@ -31,17 +27,9 @@ namespace LinqInner
 
     static class LinqExtension
     {
-        public static TAggregate Aggregate<TAggregate, TSource>(this IEnumerable<TSource> source,  TAggregate seed, Func<TAggregate, TSource, TAggregate> func)
+        public static TAggregate Aggregate<TAggregate, TSource>(this IEnumerable<TSource> source, Func<TSource, TAggregate, TAggregate> func)
         {
-            var enumerator = source.GetEnumerator();
-            enumerator.MoveNext();
-            var aggregate = func(seed, enumerator.Current);
-            while (enumerator.MoveNext())
-            {
-                var current = enumerator.Current;
-                aggregate = func(aggregate, current);
-            }
-            return aggregate;
+            return default(TAggregate);
         }
     }
 }
