@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<Projects>
+  <Project>
+    <Id>1</Id>
+    <Name>C# Core</Name>
+    <Tasks>
+      <Task>
+        <Chapter>1</Chapter>
+        <Name>Basement Language</Name>
+      </Task>
+      <Task>
+        <Chapter>2</Chapter>
+        <Name>Core Features</Name>
+      </Task>
+      <Task>
+        <Chapter>3</Chapter>
+        <Name>Visual Studio Supportment</Name>
+      </Task>
+    </Tasks>
+  </Project>
+  <Project>
+    <Id>2</Id>
+    <Name>IoT Network</Name>
+    <Tasks>
+      <Task>
+        <Chapter>1</Chapter>
+        <Name>The Future of IoT</Name>
+      </Task>
+      <Task>
+        <Chapter>2</Chapter>
+        <Name>The Economic Advantage of IoT</Name>
+      </Task>
+    </Tasks>
+  </Project>
+</Projects>
