@@ -11,12 +11,18 @@ namespace LinqInner
     {
         static void Main(string[] args)
         {
+            //SimpleExpressionTressWithParameter();
             //CalculateFactorialOfaNumber();
             //ParsingExpressionTree();
-            CompileExpressionTree();
+            //CompileExpressionTree();
+
+            //ExecuteExpressionTree();
+
+            ModifyExpressionTree();
             Console.ReadKey();
         }
 
+        #region Intial
         private static void SimpleExpressionTree()
         {
             Expression<Func<int, bool>> lambda = num => num < 5;
@@ -32,6 +38,7 @@ namespace LinqInner
                 Expression.Lambda<Func<int, bool>>(
                     numLessThenFive,
                     new ParameterExpression[] { numParam });
+            Console.WriteLine(lambda.ToString());
         }
 
         /// <summary>
@@ -56,7 +63,9 @@ namespace LinqInner
                             ),
                         label
                         ));
-            int factorial = Expression.Lambda<Func<int, int>>(block, value).Compile()(5);
+            var expr = Expression.Lambda<Func<int, int>>(block, value);
+            Console.WriteLine(expr.ToString());
+            int factorial = expr.Compile()(5);
             Console.WriteLine(factorial);
         }
 
@@ -94,5 +103,29 @@ namespace LinqInner
                 input = Console.ReadLine();
             }
         }
+        #endregion
+
+        #region ExecuteExpressionTree
+        private static void ExecuteExpressionTree()
+        {
+            BinaryExpression be = Expression.Power(Expression.Constant(2D), Expression.Constant(3D));
+
+            Expression<Func<double>> le = Expression.Lambda<Func<double>>(be);
+
+            Func<double> compiledExpression = le.Compile();
+
+            var result = compiledExpression();
+            Console.WriteLine(result);
+        }
+        #endregion
+
+        #region ModifyExpressionTree
+        private static void ModifyExpressionTree()
+        {
+            Expression<Func<int, int>> expr = num => num + 5;
+
+            Console.WriteLine(expr.ToString());
+        }
+        #endregion
     }
 }
