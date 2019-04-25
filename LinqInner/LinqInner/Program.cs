@@ -18,7 +18,9 @@ namespace LinqInner
 
             //ExecuteExpressionTree();
 
-            ModifyExpressionTree();
+            //ModifyExpressionTree();
+
+            AndAlsoModifier.RunDemo();
             Console.ReadKey();
         }
 
