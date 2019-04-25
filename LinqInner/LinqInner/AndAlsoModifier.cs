@@ -12,7 +12,7 @@ namespace LinqInner
 
         public static void RunDemo()
         {
-            Expression<Func<bool, bool, bool>> expr = (left, right) => left && right;
+            Expression<Func<bool, bool, bool>> expr = (left, right) => left | false && right && true;
             Console.WriteLine(expr);
 
             var modifier = new AndAlsoModifier();
