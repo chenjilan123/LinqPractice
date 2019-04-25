@@ -16,11 +16,11 @@ namespace LinqInner
             IQueryable<string> queryableData = companies.AsQueryable();
 
             //Build Expression Tree
-            var query = companies.Where(company => company.ToLower() == "Apple" || company.Length > 7).OrderBy(company => company);
+            //var query = companies.Where(company => company.ToLower() == "apple" || company.Length > 7).OrderBy(company => company);
 
             ParameterExpression pe = Expression.Parameter(typeof(string), "company");
             Expression left = Expression.Call(pe, typeof(string).GetMethod("ToLower", System.Type.EmptyTypes));
-            Expression right = Expression.Constant("Apple", typeof(string));
+            Expression right = Expression.Constant("apple", typeof(string));
 
             Expression e1 = Expression.Equal(left, right);
             //Expression e1 = Expression.MakeBinary(ExpressionType.Equal, left, right);
@@ -62,7 +62,13 @@ namespace LinqInner
                 Expression.Lambda<Func<string, string>>(pe, new[] { pe }));
 
             //System.String[].Where(company => ((company.ToLower() == "Apple") OrElse(company.Length > 7))).OrderBy(company => company)
-            Console.WriteLine(orderByCallExpression);
+            //Console.WriteLine(orderByCallExpression);
+
+            //Execute
+            var results = queryableData.Provider.CreateQuery<string>(orderByCallExpression);
+
+            foreach (var company in results)
+                Console.WriteLine(company);
         }
 
 
