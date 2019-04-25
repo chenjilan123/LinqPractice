@@ -11,6 +11,14 @@ namespace LinqInner
     {
         static void Main(string[] args)
         {
+            //Console.WriteLine(System.Type.FilterAttribute.ToString());
+            //Console.WriteLine(System.Type.FilterName);
+            //Console.WriteLine(System.Type.FilterNameIgnoreCase);
+            //Console.WriteLine(System.Type.Missing);
+            //Console.WriteLine(System.Type.Delimiter);
+            //Console.WriteLine(System.Type.EmptyTypes.Length);
+            //return;
+
             //SimpleExpressionTressWithParameter();
             //CalculateFactorialOfaNumber();
             //ParsingExpressionTree();
@@ -20,7 +28,9 @@ namespace LinqInner
 
             //ModifyExpressionTree();
 
-            AndAlsoModifier.RunDemo();
+            //AndAlsoModifier.RunDemo();
+
+            BuildDynamicQuery.RunDemo();
             Console.ReadKey();
         }
 
