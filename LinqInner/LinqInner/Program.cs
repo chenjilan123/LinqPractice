@@ -38,6 +38,14 @@ namespace LinqInner
             //Console.ReadKey();
         }
 
+        #region ExpressionTreeType
+        private static void ExpressionTreeType()
+        {
+            var type = typeof(Func<int>);
+            Expression<Func<int>> expr = () => 5;
+        }
+        #endregion
+
         #region ExpressionTree
         private static void ExpressionTree()
         {
