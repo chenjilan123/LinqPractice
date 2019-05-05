@@ -12,6 +12,10 @@ namespace LinqInner
     {
         static void Main(string[] args)
         {
+            IQueryable<int> query;
+            //Expression.Lambda<Func<int, bool>>()
+            //query.Where()
+
             DynamicExpressionTree();
             return;
 
