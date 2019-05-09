@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="AndAlsoModifier.cs" />
     <Compile Include="BuildDynamicQuery.cs" />
+    <Compile Include="LINQtoSQL\SqlProvider.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -50,6 +50,25 @@ namespace LinqInner
         }
         #endregion
 
+        #region IQueryable
+        private static void DemoIQueryable()
+        {
+            //var q = from c in dc.Customers
+            //        where c.City == "London"
+            //        select c;
+
+
+            //ParameterExpression pc = Expression.Parameter(typeof(Customer), "c");
+            //IQueryable<Customer> q3 =
+            //    dc.Customers.Where<Customer>(
+            //      Expression.Lambda<Func<Customer, bool>>(
+            //        Expression.Equal(
+            //        Expression.Property(pc, typeof(Customer).GetProperty("City")),
+            //          Expression.Constant("London", typeof(string))
+            //      ), new ParameterExpression[] { pc }));
+        }
+        #endregion
+
         #region ExpressionTree
         private static void ExpressionTree()
         {
