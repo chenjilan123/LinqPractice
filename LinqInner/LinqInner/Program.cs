@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection;
 using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,9 @@ namespace LinqInner
     {
         static void Main(string[] args)
         {
+            //Console.WriteLine((MethodInfo)MethodBase.GetCurrentMethod());
+            //return;
+
             IQueryable<int> query;
             //Expression.Lambda<Func<int, bool>>()
             //query.Where()
