@@ -10,7 +10,7 @@ namespace LinqInner.LINQtoSQL
     {
         public void Run()
         {
-
+            IQueryable<string> query;
         }
     }
 }
