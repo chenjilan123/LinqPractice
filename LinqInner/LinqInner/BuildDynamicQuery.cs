@@ -17,7 +17,6 @@ namespace LinqInner
 
             //Build Expression Tree
             //var query = companies.Where(company => company.ToLower() == "apple" || company.Length > 7).OrderBy(company => company);
-
             ParameterExpression pe = Expression.Parameter(typeof(string), "company");
             Expression left = Expression.Call(pe, typeof(string).GetMethod("ToLower", System.Type.EmptyTypes));
             Expression right = Expression.Constant("apple", typeof(string));
