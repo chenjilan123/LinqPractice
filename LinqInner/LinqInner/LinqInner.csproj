@@ -34,6 +34,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,6 +45,10 @@
   <ItemGroup>
     <Compile Include="AndAlsoModifier.cs" />
     <Compile Include="BuildDynamicQuery.cs" />
+    <Compile Include="LINQtoSQL\Airline.cs" />
+    <Compile Include="LINQtoSQL\DatabaseDataContext.cs" />
+    <Compile Include="LINQtoSQL\DatabaseTable.cs" />
+    <Compile Include="LINQtoSQL\SqlProvider.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
