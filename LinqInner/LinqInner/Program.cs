@@ -121,13 +121,20 @@ namespace LinqInner
         private static void ExecuteExpressionTree()
         {
             BinaryExpression be = Expression.Power(Expression.Constant(2D), Expression.Constant(3D));
-
             Expression<Func<double>> le = Expression.Lambda<Func<double>>(be);
-
             Func<double> compiledExpression = le.Compile();
-
             var result = compiledExpression();
             Console.WriteLine(result);
+
+            Func<double, double, double> func = (l, r) => Math.Pow(l, r);
+            Expression<Func<double, double, double>> expr = (l, r) => Math.Pow(l, r);
+
+            Console.WriteLine(Power(2D, 3D));
+        }
+
+        private static double Power(double l, double r)
+        {
+            return Math.Pow(l, r);
         }
         #endregion
 
