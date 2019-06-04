@@ -70,6 +70,5 @@ namespace LinqInner
                 Console.WriteLine(company);
         }
 
-
     }
 }

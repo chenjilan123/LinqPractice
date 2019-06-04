@@ -13,13 +13,14 @@ namespace LinqInner
     {
         static void Main(string[] args)
         {
+            //Demo();
+            //return;
+
             //Console.WriteLine((MethodInfo)MethodBase.GetCurrentMethod());
             //return;
 
-            IQueryable<int> query;
             //Expression.Lambda<Func<int, bool>>()
             //query.Where()
-
             DynamicExpressionTree();
             return;
 
@@ -349,6 +350,39 @@ namespace LinqInner
             Expression<Func<int, int>> expr = num => num + 5;
 
             Console.WriteLine(expr.ToString());
+        }
+        #endregion
+
+        #region Demo
+        private static void Demo()
+        {
+            //var query = companies.Where(company => company.ToLower() == "apple" || company.Length > 7).OrderBy(company => company);
+            string[] companies = new[] { "Google", "Apple", "Huawei", "Microsoft" };
+            IQueryable<string> queryableData = companies.AsQueryable();
+            ParameterExpression pe = Expression.Parameter(typeof(string), "company");
+            Expression left = Expression.Call(pe, typeof(string).GetMethod("ToLower", System.Type.EmptyTypes));
+            Expression right = Expression.Constant("apple", typeof(string));
+            Expression e1 = Expression.Equal(left, right);
+            left = Expression.Property(pe, typeof(string).GetProperty("Length"));
+            right = Expression.Constant(7, typeof(int));
+            Expression e2 = Expression.GreaterThan(left, right);
+            Expression e3 = Expression.OrElse(e1, e2);
+            MethodCallExpression whereCallExpression = Expression.Call(
+                typeof(Queryable),
+                "Where",
+                new Type[] { queryableData.ElementType },
+                queryableData.Expression, //调用者
+                Expression.Lambda<Func<string, bool>>(e3, new ParameterExpression[] { pe }) //参数体
+                );
+            MethodCallExpression orderByCallExpression = Expression.Call(
+                typeof(Queryable),
+                "OrderBy",
+                new Type[] { queryableData.ElementType, queryableData.ElementType },
+                whereCallExpression,
+                Expression.Lambda<Func<string, string>>(pe, new[] { pe }));
+            var results = queryableData.Provider.CreateQuery<string>(orderByCallExpression);
+            foreach (var company in results)
+                Console.WriteLine(company);
         }
         #endregion
     }
